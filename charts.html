@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CarolHub | Me</title>
+<link rel="stylesheet" href="css/jqueryui.css" />
+
+<script src="js/jquery-2.1.0.min.js" ></script>
+<script src="js/App42-all-1.9.1.min.js" ></script>
+<script src="js/jquery-ui-1.10.4.custom.js" ></script>
+<script type="text/javascript" src="js/recorder.js"> </script>
+<script type="text/javascript" src="js/recorderWorker.js"> </script>
+<script type="text/javascript" src="js/QTransform.js"> </script>
+<script type="text/javascript" src="js/upclick.js"></script>
+<script>
+
+$(document).ready(function(e) {
+  
+  
+  App42.initialize("b6a3eb552751b58e7487a1a55c4beede119935780df67629a27e56c87953e852","8080d3b53b4fbb1b62a854ed71e7cca6bed96a9e9fb72eb5a66cfa82e01bc3c1"); 
+  var userService = new App42User();
+  var result;
+  
+  
+  
+  
+  var lyricsnmusicAppId = "61cbeb0c2f312cc5349ab160dc9372";
+  
+  
+  $("#searchForm").on("submit",function(e){
+  
+  
+	
+		e.preventDefault();
+		var q = $("#searchInput").val();
+		
+		
+		var query = "http://api.lyricsnmusic.com/songs?api_key=61cbeb0c2f312cc5349ab160dc9372&q="+q;
+		$.ajax({
+		
+		url:query,
+		
+		dataType:'jsonp',
+		
+		
+		success:function(data){
+		console.log(data);
+		
+		
+			$.each(data,function(i,item){
+				$.each(item,function(idx,it){
+				$("#box ul").append("<li><div class='title'><b>"+it.title+"</b><br>"+it.artist.name+"<br>"+it.snippet+"</div><a href='"+it.url+"'>"+it.url+"</a></li>");
+				});
+		
+			});
+		
+		},
+		error: function(jqXHR, textStatus, errorThrown) {
+		console.log(textStatus, errorThrown);
+		makeToast("Some Error Occured!");
+			}
+		
+		});   
+  
+  
+});
+  
+ 
+
+
+
+
+	function makeToast(t){
+		$("#Toast").text(t);	
+		$("#Toast").fadeIn(500).delay(2000).fadeOut(1000);	
+	}
+
+	
+	
+
+
+	
+ });
+
+ 
+
+</script>
+
+
+
+
+
+<style>
+
+
+body{
+background:url(img/geo.png);
+
+}
+
+#main{
+
+
+width:1000px;
+position:absolute;
+margin-left:-500px;
+left:50%;
+padding:50px 0;
+top:190px;
+}  
+
+#registerForm{
+box-shadow:0 0 12px #ccc;
+border-radius:5px;
+padding-top:20px;
+padding-bottom:30px;
+}
+
+*{
+padding:0;
+margin:0;
+
+}
+ul{
+list-style:none;
+
+}
+
+input{
+width:250px;
+height:30px;
+border:none;
+background:#CCC;
+border-radius:5px;
+outline:none;
+padding:5px 20px;
+position:relative;
+float:right;
+margin-right:10px;
+}
+#registerForm{
+width:600px;
+position:absolute;
+overflow:hidden;
+}
+
+
+
+
+
+#register{
+
+height:50px;
+border-radius:0;
+background:#df7366 url("img/next2.png") right no-repeat;
+color:#fff;
+font-family:"Segoe UI";
+font-size:20px;
+text-align:left;
+width:250px;
+padding-left:30px;
+margin-top:30px;
+}
+
+#register:hover{
+background: #ef8376  url("img/next2.png") right no-repeat;
+cursor:pointer;
+
+}
+
+#nav{
+background:#df7366;
+width:100%;
+height:100px;
+
+}
+
+#nav img{
+
+width:60px;
+height:60px;
+margin:20px 0 0 40px;
+}
+#title{
+font-family:"Segoe UI Light";
+font-size:50px;
+position:absolute;
+color:#fff;
+top :10px;
+left:150px;
+}
+
+#Toast{
+width:400px;
+height:40px;
+background:url("img/black.png");
+border-radius:3px;
+position:absolute;
+top:130px;
+margin-left:-200px;
+text-align:center;
+color:#fff;
+font-family:"calibri";
+padding-top:10px;
+left:50%;
+font-size:18px;
+display:none;
+}
+
+
+#formtitle{
+
+font-family:"Segoe UI Light";
+font-size:50px;
+position:absolute;
+color:#000;
+top :130px;
+left:260px;
+}
+
+
+.circle{
+
+width:200px;
+height:200px;
+background:#df7366 url("img/Voice-Search.png") no-repeat center center;
+border-radius:50%;
+float:left;
+margin-left:60px;
+margin-top:50px;
+-webkit-transition:all 2s;
+-moz-transition:all 2s;
+transition:all 2s;
+
+}
+
+.circle:hover{
+background:#ef8376 url("img/Voice-Search.png") no-repeat center center;
+cursor:pointer;
+-webkit-transform:rotate(720deg) scale(1.2);
+-moz-transform:rotate(720deg) scale(1.2);
+-o-transform:rotate(720deg) scale(1.2);
+-ms-transform:rotate(720deg) scale(1.2);
+transform:rotate(720deg) scale(1.2);
+
+}
+
+audio{
+position:absolute;
+top:380px;
+left:0px;
+
+}
+
+#buttonsgroup{
+
+
+position:absolute;
+top:120px;
+left:500px;
+width:400px;
+height:100px;
+}
+
+#buttonsgroup input{
+
+margin-bottom:10px;
+background:#FC0;
+-webkit-transition:0.3s;
+-moz-transition:0.3s;
+}
+#buttonsgroup input:hover{
+
+background:#F80;
+cursor:pointer;
+
+}
+#searchInput{
+
+width:80%;
+float:left;
+font-family:"Segoe UI Light";
+font-size:20px;
+height:50px;
+
+border-radius:5px;
+outline:none;
+border:none;
+background:#FC0 url("img/Search.png") no-repeat right;
+
+}
+#box ul{
+margin-top:30px;
+padding-top:60px;
+}
+#box ul li{
+height:110px;
+background:url("img/green.fw.png");
+margin-top:10px;
+padding:20px;
+}
+
+#box ul li .title,a{
+
+font-family:"calibri";
+line-height:25px;
+}
+</style>
+</head>
+<body>
+<div id="nav">
+<img src="img/logo.png" />
+<div id="title">#CarolHub</div>
+</nav>
+<div id="formtitle">
+Search Music
+</div>
+<div id="Toast" >Result</div>
+
+<div id="main">
+
+
+<div id="box">
+
+
+
+<ul id='chart_list'>
+<li class='span6' style='margin-left:0'>
+<a href='http://www.lyricsnmusic.com/john-legend/all-of-me-lyrics/29749762' title='John Legend All of Me'>
+<img src='http://www.lyricsnmusic.com/images/icon100.png?1391242092' style='float:right;margin-left:5px;' width='100' />
+</a>
+<h5>
+<span class='rank'>1</span>
+<a href="http://www.lyricsnmusic.com/john-legend">John Legend</a>
+<br />
+<a href="http://www.lyricsnmusic.com/john-legend/all-of-me-lyrics/29749762" class="title">All of Me<span class="command fr"> &larr; View Lyrics</span></a>
+</h5>
+<p class='small' style='padding-left:50px'>What would I do without your smart mouth
+Drawing me in, and you kicking me out
+Got my head spinning, no kidding, I can’t pin you down
+What’s going ...</p>
+</li>
+<li class='span6' style='margin-left:0'>
+<a href='http://www.lyricsnmusic.com/lorde/royals-lyrics/29962334' title='Lorde Royals'>
+<img src='http://www.lyricsnmusic.com/images/icon100.png?1391242092' style='float:right;margin-left:5px;' width='100' />
+</a>
+<h5>
+<span class='rank'>2</span>
+<a href="http://www.lyricsnmusic.com/lorde">Lorde</a>
+<br />
+<a href="http://www.lyricsnmusic.com/lorde/royals-lyrics/29962334" class="title">Royals<span class="command fr"> &larr; View Lyrics</span></a>
+</h5>
+<p class='small' style='padding-left:50px'>I've never seen a diamond in the flesh
+I cut my teeth on wedding rings in the movies
+And I'm not proud of my address, in the torn up town
+No post c...</p>
+</li>
+<li class='span6' style='margin-left:0'>
+<a href='http://www.lyricsnmusic.com/pharrell-williams/happy-lyrics/30024711' title='Pharrell Williams Happy'>
+<img src='http://www.lyricsnmusic.com/images/icon100.png?1391242092' style='float:right;margin-left:5px;' width='100' />
+</a>
+<h5>
+<span class='rank'>3</span>
+<a href="http://www.lyricsnmusic.com/pharrell-williams">Pharrell Williams</a>
+<br />
+<a href="http://www.lyricsnmusic.com/pharrell-williams/happy-lyrics/30024711" class="title">Happy<span class="command fr"> &larr; View Lyrics</span></a>
+</h5>
+<p class='small' style='padding-left:50px'>It might seem crazy what I'm about to say
+Sunshine she's here, you can take away
+I'm a hot air balloon, I could go to space
+With the air, like I do...</p>
+</li>
+<li class='span6' style='margin-left:0'>
+<a href='http://www.lyricsnmusic.com/lorde/team-lyrics/29962331' title='Lorde Team'>
+<img src='http://www.lyricsnmusic.com/images/icon100.png?1391242092' style='float:right;margin-left:5px;' width='100' />
+</a>
+<h5>
+<span class='rank'>4</span>
+<a href="http://www.lyricsnmusic.com/lorde">Lorde</a>
+<br />
+<a href="http://www.lyricsnmusic.com/lorde/team-lyrics/29962331" class="title">Team<span class="command fr"> &larr; View Lyrics</span></a>
+</h5>
+<p class='small' style='padding-left:50px'>Wait 'til you're announced
+We've not yet lost all our graces
+The hounds will stay in chains
+Look upon your greatness and she'll send the call out
+...</p>
+</li>
+<li class='span6' style='margin-left:0'>
+<a href='http://www.lyricsnmusic.com/katy-perry/dark-horse-lyrics/29982386' title='Katy Perry Dark Horse'>
+<img src='http://www.lyricsnmusic.com/images/icon100.png?1391242092' style='float:right;margin-left:5px;' width='100' />
+</a>
+<h5>
+<span class='rank'>5</span>
+<a href="http://www.lyricsnmusic.com/katy-perry">Katy Perry</a>
+<br />
+<a href="http://www.lyricsnmusic.com/katy-perry/dark-horse-lyrics/29982386" class="title">Dark Horse<span class="command fr"> &larr; View Lyrics</span></a>
+</h5>
+<p class='small' style='padding-left:50px'>I knew you were
+You were gonna come to me
+And here you are
+But you better choose carefully
+'Cause I’m capable of anything
+Of anything and everyth...</p>
+</li>
+</ul>
+</div>
+
+
+</div>
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+

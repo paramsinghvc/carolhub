@@ -1,0 +1,305 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CarolHub</title>
+<script src="js/jquery-2.1.0.min.js" ></script>
+
+<script>
+
+$(document).ready(function(e) {
+  
+  
+   $(".slideshow > .img:gt(0)").hide();
+   setInterval(function(){
+       
+        $(".slideshow .img:first").fadeOut(2000).next().fadeIn(3000).end().appendTo(".slideshow");
+       
+        },5000);
+
+		
+		$("#find").on("click",function(){
+
+			window.location.href="search.html";
+		
+		
+		});
+
+		
+		
+		$("#voice").on("click",function(){
+
+			window.location.href="auth.html";
+		
+		
+		});
+		
+		
+		
+		$("#search").on("click",function(){
+
+			window.location.href="search.html";
+		
+		
+		});
+		
+		
+ });
+
+ 
+ 
+ 
+
+</script>
+
+<style>
+body{
+	
+	background:#313131;
+
+	}
+*{
+
+font-family:"Segoe UI Light";
+	padding:0;
+	margin:0;
+	
+	}
+
+#header{
+
+
+width:100%;
+height:600px;
+}	
+.slideshow{
+position:absolute;
+width:100%;
+height:600px;
+}	
+
+.img{
+
+background-size:cover;
+background-attachment:fixed;
+background-position:center center;
+background-repeat:no-repeat;
+width:100%;
+height:600px;
+position:absolute;
+
+
+}
+
+	#nav{
+	
+
+	width:100%;
+	height:50px;
+	position:absolute;
+	top:0;
+	z-index:10;
+	}
+
+
+#nav ul{
+position:absolute;
+text-align:center;
+list-style:none;
+right:0;
+}
+a{
+text-decoration:none;
+color:#fff;
+font-family:"Segoe UI Light";
+}
+a:hover{
+color:#ccc;
+
+}
+#nav ul li{
+float:left;
+padding:10px 30px;
+
+}
+#midwrap{
+position:absolute;
+width:400px;
+margin-left:-200px;
+left:50%;
+top:200px;
+
+text-align:center;
+}
+#title{
+font-size:74px;
+color:#fff;
+
+}
+#UserButtons{
+margin-top:30px;
+margin-left:50px;
+
+}
+
+.userbutton{
+
+width:180px;
+
+height:35px;
+background:#df7366;
+text-align:center;
+valign:center;
+padding-top:8px;
+color:#fff;
+float:left;
+-webkit-transition:all 0.3s;
+}
+.userbutton:hover{
+background: #ef8376;
+cursor:pointer;
+
+}
+#cir{
+background:#fff;
+width:100%;
+height:400px;
+
+
+}
+
+.wrapper{
+
+width:1000px;
+position:absolute;
+margin-left:-500px;
+left:50%;
+padding:50px ;
+}
+
+.circle{
+
+width:200px;
+height:200px;
+background:#df7366;
+border-radius:50%;
+float:left;
+margin-right:130px;
+margin-top:50px;
+-webkit-transition:all 2s;
+-moz-transition:all 2s;
+transition:all 2s;
+}
+.circle:last-child{
+
+margin-right:0;
+}
+
+.circle:hover{
+background:#ef8376;
+cursor:pointer;
+-webkit-transform:rotate(720deg) scale(1.2);
+-moz-transform:rotate(720deg) scale(1.2);
+-o-transform:rotate(720deg) scale(1.2);
+-ms-transform:rotate(720deg) scale(1.2);
+transform:rotate(720deg) scale(1.2);
+
+}
+
+
+
+.circle img{
+width:128px;
+height:128px;
+margin:37px;
+}
+
+
+#arrow{
+
+width:80px;
+height:80px;
+background:url(img/arrow.png) no-repeat;
+position:absolute;
+top:270px;
+margin-left:-40px;
+left:50%;
+cursor:pointer;
+}
+
+
+#footer{
+
+background:url(img/crowd1.jpg) fixed no-repeat top center;
+background-size:cover;
+width:100%;
+height:427px;
+
+}
+
+
+</style>
+
+</head>
+<body>
+
+<div id="nav">
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="search.html">Search</a></li>
+<li><a href="">Top 100</a></li>
+<li><a href="me.html">Upload</a></li>
+<li><a href="">Contacts</a></li>
+</ul>
+</div>
+<div id="header">
+
+
+<div class = "slideshow">
+<div class="img" style="background-image:url('images/header.jpg')"></div>
+<div class="img" style="background-image:url('img/guitar.jpg')"></div>
+<div class="img" style="background-image:url('img/kitten1.jpg')"></div>
+
+</div>
+
+<div id="midwrap">
+<div id="title">
+#Carolhub
+</div>
+<div id="UserButtons">
+<a href="auth.html"><div class="userbutton" style="margin-right:10px;width:120px;background:#fff;color:#748269;">Login</div></a>
+<a href="register.html"><div class="userbutton">Create Account</div></a>
+
+</div>
+<div id="arrow">
+</div>
+</div>
+</div>
+
+<div id="cir">
+<div class="wrapper">
+
+<div class="circle">
+<img src="img/Data-Find.png" id="find" alt="Search for  song"  style="margin:43px"  />
+</div>
+
+
+<div class="circle">
+<img src="img/Voice-Search.png" id="voice" alt="Search for  song"/>
+</div>
+
+
+<div class="circle">
+<img src="img/lyrics.png" alt="Search for  song" id="search"/>
+</div>
+
+</div>
+</div>
+
+<div id="footer">
+
+</div>
+
+</body>
+</html>
+

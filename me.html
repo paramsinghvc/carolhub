@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CarolHub | Me</title>
+<link rel="stylesheet" href="css/jqueryui.css" />
+
+<script src="js/jquery-2.1.0.min.js" ></script>
+<script src="js/App42-all-1.9.1.min.js" ></script>
+<script src="js/jquery-ui-1.10.4.custom.js" ></script>
+<script type="text/javascript" src="js/recorder.js"> </script>
+<script type="text/javascript" src="js/recorderWorker.js"> </script>
+<script type="text/javascript" src="js/QTransform.js"> </script>
+<script type="text/javascript" src="js/upclick.js"></script>
+<script>
+
+$(document).ready(function(e) {
+  
+  
+  App42.initialize("b6a3eb552751b58e7487a1a55c4beede119935780df67629a27e56c87953e852","8080d3b53b4fbb1b62a854ed71e7cca6bed96a9e9fb72eb5a66cfa82e01bc3c1"); 
+  var userService = new App42User();
+  var result;
+  
+  
+  
+  
+  $("#registrationForm").on("submit",function(e){
+  
+		e.preventDefault();
+		
+		var username = $("#Email").val();
+	
+		var password = $("#Password").val();
+		
+		
+		
+		userService.authenticate(username , password, {    
+			  
+			success: function(object)   
+			{    
+				var userObj = JSON.parse(object);    
+				result = userObj.app42.response.users.user;  
+				console.log("userName is " + result.userName)  
+				console.log("sessionId is " + result.sessionId)  
+				makeToast("User authenticated Successfully");
+			},    
+				error: function(error) {  
+			
+				console.log("error"+error);
+				makeToast("Sorry! Wrong Credentials!");
+			}     
+		});   
+  
+  
+  });
+  
+ 
+
+
+
+
+	function makeToast(t){
+		$("#Toast").text(t);	
+		$("#Toast").fadeIn(500).delay(2000).fadeOut(1000);	
+	}
+
+	
+	
+
+$(".circle").on("click",function(){
+ 
+$("#Toast").text("Listening...");	
+		$("#Toast").fadeIn(500).delay(5000).fadeOut(1000);	
+ 
+ });
+
+
+
+ 	
+	
+ });
+
+ 
+function GetParameterValues(param) {
+		var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		for (var i = 0; i < url.length; i++) {
+		var urlparam = url[i].split('=');
+		if (urlparam[0] == param) {
+		return urlparam[1];
+			}
+		}
+	}
+  
+ 
+ 
+</script>
+
+
+
+
+
+<style>
+
+
+body{
+background:url(img/geo.png);
+
+}
+
+#main{
+
+
+width:1000px;
+position:absolute;
+margin-left:-500px;
+left:50%;
+padding:50px 0;
+top:190px;
+
+}  
+
+#registerForm{
+box-shadow:0 0 12px #ccc;
+border-radius:5px;
+padding-top:20px;
+padding-bottom:30px;
+
+}
+
+*{
+padding:0;
+margin:0;
+
+}
+ul{
+list-style:none;
+
+}
+
+input{
+width:250px;
+height:30px;
+border:none;
+background:#CCC;
+border-radius:5px;
+outline:none;
+padding:5px 20px;
+position:relative;
+float:right;
+margin-right:10px;
+}
+#registerForm{
+width:600px;
+position:absolute;
+overflow:hidden;
+}
+
+
+
+
+
+#register{
+
+height:50px;
+border-radius:0;
+background:#df7366 url("img/next2.png") right no-repeat;
+color:#fff;
+font-family:"Segoe UI";
+font-size:20px;
+text-align:left;
+width:250px;
+padding-left:30px;
+margin-top:30px;
+}
+
+#register:hover{
+background: #ef8376  url("img/next2.png") right no-repeat;
+cursor:pointer;
+
+}
+
+#nav{
+background:#df7366;
+width:100%;
+height:100px;
+
+}
+
+#nav img{
+
+width:60px;
+height:60px;
+margin:20px 0 0 40px;
+}
+#title{
+font-family:"Segoe UI Light";
+font-size:50px;
+position:absolute;
+color:#fff;
+top :10px;
+left:150px;
+}
+
+#Toast{
+width:400px;
+height:40px;
+background:url("img/black.png");
+border-radius:3px;
+position:absolute;
+top:130px;
+margin-left:-200px;
+text-align:center;
+color:#fff;
+font-family:"calibri";
+padding-top:10px;
+left:50%;
+font-size:18px;
+display:none;
+}
+
+
+#formtitle{
+
+font-family:"Segoe UI Light";
+font-size:50px;
+position:absolute;
+color:#000;
+top :130px;
+left:260px;
+}
+
+
+.circle{
+
+width:200px;
+height:200px;
+background:#df7366 url("img/Voice-Search.png") no-repeat center center;
+border-radius:50%;
+float:left;
+margin-left:60px;
+margin-top:50px;
+-webkit-transition:all 2s;
+-moz-transition:all 2s;
+transition:all 2s;
+
+}
+
+.circle:hover{
+background:#ef8376 url("img/Voice-Search.png") no-repeat center center;
+cursor:pointer;
+-webkit-transform:rotate(720deg) scale(1.2);
+-moz-transform:rotate(720deg) scale(1.2);
+-o-transform:rotate(720deg) scale(1.2);
+-ms-transform:rotate(720deg) scale(1.2);
+transform:rotate(720deg) scale(1.2);
+
+}
+
+audio{
+position:absolute;
+top:380px;
+left:0px;
+
+}
+
+#buttonsgroup{
+
+
+position:absolute;
+top:120px;
+left:500px;
+width:400px;
+height:100px;
+}
+
+#buttonsgroup input{
+
+margin-bottom:10px;
+background:#FC0;
+-webkit-transition:0.3s;
+-moz-transition:0.3s;
+}
+#buttonsgroup input:hover{
+
+background:#F80;
+cursor:pointer;
+
+}
+
+
+
+
+</style>
+</head>
+<body>
+<div id="nav">
+<img src="img/logo.png" />
+<a href="index.html"><div id="title">#CarolHub</div></a>
+</nav>
+<div id="formtitle">
+Record a Sound
+</div>
+<div id="Toast" >Result</div>
+
+<div id="main">
+
+<div class="circle"onclick="startRecording()">
+
+</div>
+
+ <audio controls autoplay ></audio>
+   
+
+    
+   
+
+   
+ <script>
+      var onFail = function(e) {
+        console.log('Rejected!', e);
+      };
+  
+	var time;
+      var onSuccess = function(s) {
+        var context = new webkitAudioContext();
+        var mediaStreamSource = context.createMediaStreamSource(s);
+        recorder = new Recorder(mediaStreamSource);
+        recorder.record();
+
+        // audio loopback
+        // mediaStreamSource.connect(context.destination);
+      }
+
+      window.URL = window.URL || window.webkitURL;
+      navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+
+      var recorder;
+      var audio = document.querySelector('audio');
+		audio.volume = 0.4;
+	  
+      function startRecording() {
+        if (navigator.getUserMedia) {
+          navigator.getUserMedia({audio: true}, onSuccess, onFail);
+        } else {
+          console.log('navigator.getUserMedia not present');
+        }
+      }
+		var curDate = new Date();
+      function stopRecording() {
+	  
+	  $("#file").fadeIn(1000);
+	  $("#upload").fadeIn(1000);
+	  
+	  
+	  var d = new Date();
+		time = d.getHours() + "-" + d.getMinutes() + "-" + d.getSeconds()+".wav";
+	  
+        recorder.stop();
+        recorder.exportWAV(function(s) {
+          audio.src = window.URL.createObjectURL(s);
+		
+		Recorder.forceDownload(s,time);
+		
+		
+		//  File Upload using SDK
+		
+		
+		$("#upload").on("click",function(){
+		
+		
+		var uploadService  = new App42Upload();  
+		
+		
+		var myFile;
+	
+		
+		var fileName = time,  
+userName = "Nick",  
+description = "...",  
+filePath = document.getElementById("file"),    
+fileType = "AUDIO",   
+file = filePath.files[0],
+result ;   
+console.log(file);
+ 	var a = GetParameterValues('user');
+uploadService.uploadFileForUser(fileName,a,file,fileType,description,{    
+    success: function(object)   
+    {    
+        var uploadObj = JSON.parse(object);    
+        console.log("name is " +uploadObj.app42.response.upload.files.file.name)  
+        console.log("file type is"+uploadObj.app42.response.upload.files.file.type)  
+        console.log(" url is" +uploadObj.app42.response.upload.files.file.url)  
+		makeToast("File Uploaded Successfully");
+    },    
+    error: function(error) {    
+	    var uploadObj = JSON.parse(error);  
+        appErrorCode = uploadObj.app42Fault.appErrorCode;  
+	console.log(appErrorCode);
+	makeToast("Error Occured");
+    }    
+});   
+		
+		});
+		
+		
+		
+		
+		
+		  
+        });
+		
+	
+	
+	
+	function makeToast(t){
+		$("#Toast").text(t);	
+		$("#Toast").fadeIn(500).delay(2000).fadeOut(1000);	
+	}
+
+		
+      }
+    </script>
+
+	
+	<div id="buttonsgroup">
+
+ <input onclick="stopRecording()" type="button" value="Stop Recording and Play" />
+ 	  <input type="file" name="file" id="file" style="width:210px;height:23px;display:none;">
+  <input type="button" value="Upload" id="upload" style="display:none;"/>
+
+  
+  </div>
+</div>
+
+
+
+
+
+</body>
+</html>
+
+
+
+
